@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida al Successo nei Colloqui & LinkedIn / Sollicitatie & LinkedIn Gids</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { margin: 0; font-size: 2.2em; line-height: 1.3; }
+        .sub-title { font-size: 1.2em; margin-top: 10px; opacity: 0.9; font-weight: normal; }
+
+        .istruzioni {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            color: #856404;
+        }
+        .istruzioni h3 { margin-top: 0; color: #664d03; border-bottom: 1px solid #ffeeba; padding-bottom: 5px; }
+        .istruzioni ul { list-style-type: disc; padding-left: 20px; margin: 0; }
+        .istruzioni li { margin-bottom: 8px; }
+        .mobile-tip { 
+            margin-top: 15px; 
+            font-size: 0.95em; 
+            border-top: 1px dashed #ffeeba; 
+            padding-top: 12px;
+        }
+
+        .no-print {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn-print {
+            background-color: #28a745;
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.2s;
+        }
+        .btn-print:hover {
+            background-color: #218838;
+        }
+        
+        section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eef2f3;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        
+        .card {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        
+        .lang-block {
+            margin-bottom: 15px;
+            padding: 5px 0;
+        }
+        .lang-it { border-left: 3px solid #4ca1af; padding-left: 12px; margin-bottom: 15px; }
+        .lang-nl { border-left: 3px solid #f39c12; padding-left: 12px; }
+        
+        .badge {
+            display: inline-block;
+            font-size: 0.75em;
+            padding: 2px 6px;
+            background-color: #eef2f3;
+            color: #7f8c8d;
+            border-radius: 3px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .badge-it { background-color: #e1f5fe; color: #0288d1; }
+        .badge-nl { background-color: #fff3e0; color: #f57c00; }
+
+        .topic { font-weight: bold; color: #2c3e50; font-size: 1.15em; display: block; }
+        .description { color: #555; display: block; margin-top: 2px; font-size: 0.95em; }
+        
+        .prompt-container {
+            margin-top: 12px;
+            background-color: #f9f9f9;
+            border: 1px solid #eef2f3;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .prompt-header {
+            background-color: #f1f5f7;
+            padding: 6px 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: #7f8c8d;
+            border-bottom: 1px solid #eef2f3;
+        }
+        .prompt-box {
+            padding: 12px 15px;
+            font-size: 0.95em;
+            color: #34495e;
+            white-space: pre-line;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #fafbfc;
+        }
+        
+        @media print {
+            .no-print, .istruzioni { display: none !important; }
+            body { background-color: white; padding: 0; }
+            section { box-shadow: none; border: 1px solid #eee; page-break-inside: avoid; }
+            header { background: #2c3e50 !important; color: white !important; }
+            .prompt-container { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>💼 Guida per la Candidatura e la Presentazione Personale 2026</h1>
+    <div class="sub-title">Gids voor Sollicitatie & Persoonlijke Presentatie 2026"</div>
+</header>
+
+<div class="istruzioni">
+    <h3>📖 Istruzioni per l'uso / Gebruiksaanwijzing</h3>
+    <ul>
+        <li><strong>IT: Copia e Incolla:</strong> Seleziona i testi nei riquadri (Prompt) in base alla lingua desiderata e incollali in ChatGPT o Claude. Ricorda di allegare il tuo CV e il testo dell'offerta di lavoro!</li>
+        <li><strong>NL: Kopiëren en Plakken:</strong> Selecteer de teksten in de vakken (Prompt) op basis van de gewenste taal en plak ze in ChatGPT of Claude. Vergeet niet je cv en de vacaturetekst toe te voegen!</li>
+        <li><strong>PDF:</strong> Clicca sul tasto verde per salvare o stampare. / Klik op de groene knop om op te slaan als PDF of te printen.</li>
+    </ul>
+    
+    <div class="mobile-tip">
+        <strong>📱 Dal tuo cellulare / Vanaf je mobiele telefoon:</strong><br>
+        1. Clicca il tasto verde "Stampa / PDF" / Klik op de groene knop.<br>
+        2. <strong>iPhone:</strong> Cerca l'icona <strong>"Condividi"</strong> (quadrato con freccia) nel menu di stampa e seleziona <strong>"Salva su File"</strong> come PDF.<br>
+        3. <strong>Android:</strong> Tocca i <strong>tre puntini</strong> in alto a destra nel menu di stampa e seleziona <strong>"Salva come PDF"</strong>.
+    </div>
+</div>
+
+<div class="no-print">
+    <button class="btn-print" onclick="window.print()">🖨️ Stampa la guida o salva come PDF / Print of Opslaan als PDF</button>
+</div>
+
+<section>
+    <h2>5 Prompt Strategici per l'IA / 5 Strategische Prompts voor AI</h2>
+    
+    <div class="grid-container">
+        
+        <div class="card">
+            <div class="lang-block lang-it">
+                <span class="badge badge-it">Italiano</span>
+                <span class="topic">1. Sistema il tuo CV attuale</span>
+                <span class="description">Incolla sia il tuo CV che il testo dell'offerta di lavoro per ottenere una consulenza mirata senza filtri.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt da copiare in italiano:</div>
+                    <div class="prompt-box">"Agisci come un recruiter senior. Valuta il mio CV per la posizione di [titolo della posizione]. Riscrivi i punti elenco deboli. Aggiungi le parole chiave mancanti tratte dal testo dell'offerta di lavoro. Indica cosa verrebbe scartato da un filtro ATS."</div>
+                </div>
+            </div>
+            
+            <div class="lang-block lang-nl">
+                <span class="badge badge-nl">Nederlands</span>
+                <span class="topic">1. Fix je bestaande cv</span>
+                <span class="description">Plak je cv én de vacaturetekst erbij. Zonder context geen scherp advies.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt om te kopiëren in het Nederlands:</div>
+                    <div class="prompt-box">"Gedraag je als een senior recruiter. Beoordeel mijn cv voor de functie [functietitel]. Herschrijf zwakke bulletpoints. Voeg ontbrekende keywords uit de vacaturetekst toe. Geef aan wat door een ATS-filter zou worden weggehaald."</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="lang-block lang-it">
+                <span class="badge badge-it">Italiano</span>
+                <span class="topic">2. Find i punti deboli prima che li veda il recruiter</span>
+                <span class="description">Anticipa le obiezioni analizzando le competenze mancanti o da riformulare.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt da copiare in italiano:</div>
+                    <div class="prompt-box">"Agisci come un hiring manager. Confronta il mio CV con questo annuncio di lavoro. Crea un elenco delle competenze mancanti. Dimmi cosa posso riformulare e cosa devo assolutamente ancora imparare."</div>
+                </div>
+            </div>
+            
+            <div class="lang-block lang-nl">
+                <span class="badge badge-nl">Nederlands</span>
+                <span class="topic">2. Vind de gaten voordat de recruiter ze ziet</span>
+                <span class="description">De meeste mensen slaan deze stap over. Grote fout. Vergelijk je cv kritisch.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt om te kopiëren in het Nederlands:</div>
+                    <div class="prompt-box">"Gedraag je als een hiring manager. Vergelijk mijn cv met deze vacaturetekst. Maak een lijst van ontbrekende skills. Vertel me wat ik kan herformuleren en wat ik echt nog moet leren."</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="lang-block lang-it">
+                <span class="badge badge-it">Italiano</span>
+                <span class="topic">3. Trasforma i compiti in risultati</span>
+                <span class="description">Costringi l'IA a pensare in termini di cifre e risultati concreti invece di indovinare.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt da copiare in italiano:</div>
+                    <div class="prompt-box">"Agisci come un recruiter. Riscrivi queste responsabilità in punti elenco basati sui risultati. Usa numeri ed esiti concreti. Se mancano dei dati numerici, chiedimeli prima di iniziare a scrivere."</div>
+                </div>
+            </div>
+            
+            <div class="lang-block lang-nl">
+                <span class="badge badge-nl">Nederlands</span>
+                <span class="topic">3. Maak van taken prestaties</span>
+                <span class="description">Dit dwingt AI om te denken en resultaten te gebruiken in plaats van te gokken.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt om te kopiëren in het Nederlands:</div>
+                    <div class="prompt-box">"Gedraag je als een recruiter. Herschrijf deze verantwoordelijkheden naar bulletpoints op basis van resultaten. Gebruik cijfers en concrete uitkomsten. Als er getallen ontbreken, vraag het mij eerst voor je gaat schrijven."</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="lang-block lang-it">
+                <span class="badge badge-it">Italiano</span>
+                <span class="topic">4. Una sezione "Info" di LinkedIn che suoni come te</span>
+                <span class="description">Crea una presentazione autentica in prima persona e senza frasi fatte in 3 diverse sfumature.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt da copiare in italiano:</div>
+                    <div class="prompt-box">"Agisci come un esperto di personal branding. Scrivi la sezione Informazioni (About) del mio LinkedIn:
+- In prima persona
+- Senza parole d'ordine (buzzwords)
+- Focalizzandoti sui problemi che risolvo.
+Crea 3 versioni: formale, colloquiale, audace."</div>
+                </div>
+            </div>
+            
+            <div class="lang-block lang-nl">
+                <span class="badge badge-nl">Nederlands</span>
+                <span class="topic">4. Een LinkedIn About die klinkt als jij</span>
+                <span class="description">Kies uit 3 versies de variant die écht authentiek en natuurlijk aanvoelt.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt om te kopiëren in het Nederlands:</div>
+                    <div class="prompt-box">"Gedraag je als een personal branding expert. Schrijf mijn LinkedIn About:
+- In de ik-vorm
+- Geen buzzwords
+- Focus op de problemen die ik oplos
+Maak 3 versies: formeel, conversational, bold."</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="lang-block lang-it">
+                <span class="badge badge-it">Italiano</span>
+                <span class="topic">5. Ottimizzazione delle parole chiave (ATS)</span>
+                <span class="description">Supera i filtri automatici inserendo le parole chiave fondamentali in modo del tutto naturale.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt da copiare in italiano:</div>
+                    <div class="prompt-box">"Agisci come un sistema ATS. Estrai le 15 parole chiave principali da questo annuncio di lavoro. Inseriscile in modo naturale nel mio CV. Evita il keyword stuffing (l'accumulo forzato di parole chiave)."</div>
+                </div>
+            </div>
+            
+            <div class="lang-block lang-nl">
+                <span class="badge badge-nl">Nederlands</span>
+                <span class="topic">5. Keyword-optimalisatie</span>
+                <span class="description">Kom voorbij de automatische filters zonder dat je cv klinkt als een droge steekwoordenlijst.</span>
+                <div class="prompt-container">
+                    <div class="prompt-header">Prompt om te kopiëren in het Nederlands:</div>
+                    <div class="prompt-box">"Gedraag je als een ATS-systeem. Haal the top 15 keywords uit deze vacaturetekst. Verwerk ze op een natuurlijke manier in mijn cv. Geen keyword stuffing."</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p style="text-align: center; color: #888; font-size: 0.9em;">
+        &copy; 2026 - Guida al Successo Professionale / Professionele Succesgids<br>
+        <em>La differenza non la fa lo strumento. La fa il modo in cui lo guidi. / Het verschil zit niet in de tool. Het zit in hoe je hem aanstuurt.</em>
+    </p>
+</footer>
+
+</body>
+</html>
