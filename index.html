@@ -20,6 +20,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guida al Successo nei Colloqui & LinkedIn / Sollicitatie & LinkedIn Gids</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <meta name="theme-color" content="#2c3e50">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -160,6 +164,65 @@
             section { box-shadow: none; border: 1px solid #eee; page-break-inside: avoid; }
             header { background: #2c3e50 !important; color: white !important; }
             .prompt-container { page-break-inside: avoid; }
+        }
+
+        .waardering {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .waardering button {
+            border: none;
+            background: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.55;
+            padding: 4px 6px;
+            border-radius: 50%;
+            transition: opacity 0.2s, transform 0.15s;
+            line-height: 1;
+        }
+        .waardering button:hover { opacity: 1; transform: scale(1.15); }
+        .waardering small { display: block; margin-top: 4px; opacity: 0.7; font-size: 0.75rem; }
+
+        #install-banner {
+            position: fixed;
+            left: 50%;
+            bottom: -100px;
+            transform: translateX(-50%);
+            width: calc(100% - 30px);
+            max-width: 400px;
+            background: #2c3e50;
+            color: #f4f7f6;
+            padding: 12px 14px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            z-index: 5000;
+            transition: bottom 0.5s ease;
+        }
+        #install-banner.show { bottom: 16px; }
+        #install-banner span.icon { font-size: 1.5rem; }
+        #install-banner .txt { flex: 1; }
+        #install-banner button {
+            border: none; border-radius: 6px; padding: 7px 10px;
+            font-weight: bold; cursor: pointer; font-size: 0.75rem;
+        }
+        #install-banner .install-yes { background: #f4f7f6; color: #2c3e50; }
+        #install-banner .install-no { background: transparent; color: #f4f7f6; opacity: 0.7; }
+
+        #integrity-block {
+            display: none;
+            position: fixed; inset: 0; z-index: 99999;
+            background: #1a222b;
+            color: #f4f7f6;
+            align-items: center; justify-content: center;
+            text-align: center; padding: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
     </style>
 </head>
@@ -316,12 +379,142 @@ Maak 3 versies: formeel, conversational, bold."</div>
     </div>
 </section>
 
-<footer>
+<footer id="app-footer">
     <p style="text-align: center; color: #888; font-size: 0.9em;">
         &copy; 2026 - Guida al Successo Professionale / Professionele Succesgids<br>
-        <em>La differenza non la fa lo strumento. La fa il modo in cui lo guidi. / Het verschil zit niet in de tool. Het zit in hoe je hem aanstuurt.</em>
+        <em>La differenza non la fa lo strumento. La fa il modo in cui lo guidi. / Het verschil zit niet in de tool. Het zit in hoe je hem aanstuurt.</em><br>
+        <span style="font-size:0.85em;">© <span id="copyrightMark">Jan den Hollander</span> · <a href="mailto:jandenhollander@duck.com" style="color:#4ca1af;">jandenhollander@duck.com</a></span>
     </p>
+    <div class="waardering" id="waardering">
+        <button class="rood" title="Niet zo leuk" onclick="stuurWaardering('rood', this)">👎</button>
+        <button class="geel" title="Gaat wel" onclick="stuurWaardering('geel', this)">🤔</button>
+        <button class="groen" title="Leuk!" onclick="stuurWaardering('groen', this)">👍</button>
+    </div>
+    <small id="waardering-status" style="display:block; text-align:center; color:#999;">Vond je dit nuttig? Laat het weten.</small>
 </footer>
+
+<div id="install-banner">
+    <span class="icon">💼</span>
+    <span class="txt">Installeer deze gids als app op je toestel.</span>
+    <button class="install-yes" onclick="installeerApp()">Installeer</button>
+    <button class="install-no" onclick="verbergInstallBanner()">Nee</button>
+</div>
+
+<div id="integrity-block">
+    <div>
+        <div style="font-size:2rem;">💼</div>
+        <p>Deze kopie van deze gids is gewijzigd of mist de copyrightvermelding
+        en kan daarom niet worden gebruikt.</p>
+        <p style="font-size:0.8rem; opacity:0.8;">© Jan den Hollander — jandenhollander@duck.com</p>
+    </div>
+</div>
+
+<script>
+    /* ============================================================
+       EERLIJKHEID / INTEGRITEITSCONTROLE
+       Bewaakt dat de copyrightvermelding aanwezig en ongewijzigd
+       blijft. Twee lagen: live-observer + periodieke terugvalcontrole,
+       zodat de blokkade ook werkt als de observer wordt omzeild.
+    ============================================================ */
+    const VEREISTE_TEKST = 'Jan den Hollander';
+    let appGeblokkeerd = false;
+
+    function blockApp() {
+        if (appGeblokkeerd) return;
+        appGeblokkeerd = true;
+        document.getElementById('integrity-block').style.display = 'flex';
+        document.querySelectorAll('body > *:not(#integrity-block)').forEach(el => {
+            if (el.tagName !== 'SCRIPT') el.style.visibility = 'hidden';
+        });
+    }
+
+    function controleerIntegriteit() {
+        const mark = document.getElementById('copyrightMark');
+        const ok = mark && mark.textContent.includes(VEREISTE_TEKST);
+        if (!ok) blockApp();
+    }
+
+    const footerEl = document.getElementById('app-footer');
+    if (footerEl) {
+        new MutationObserver(controleerIntegriteit).observe(footerEl, {
+            childList: true, characterData: true, subtree: true
+        });
+    }
+    // Terugvalcontrole: onafhankelijke periodieke check als vangnet
+    setInterval(controleerIntegriteit, 4000);
+    controleerIntegriteit();
+
+    /* ============================================================
+       WAARDERING — 3 duimpjes in stoplichtkleuren
+       Verstuurt een korte melding via het gedeelde Web3Forms-formulier
+       "Waardering". Vervang de access key door dezelfde key die de
+       andere apps gebruiken.
+    ============================================================ */
+    const WEB3FORMS_ACCESS_KEY = 'PLAK_HIER_JE_WEB3FORMS_ACCESS_KEY';
+
+    function stuurWaardering(kleur, btn) {
+        const statusEl = document.getElementById('waardering-status');
+        const labels = { rood: 'Niet zo leuk 👎', geel: 'Gaat wel 🤔', groen: 'Leuk! 👍' };
+
+        document.querySelectorAll('.waardering button').forEach(b => b.disabled = true);
+        statusEl.textContent = 'Versturen...';
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                access_key: WEB3FORMS_ACCESS_KEY,
+                subject: 'Waardering — Aiuto Colloquio',
+                app: 'Aiuto Colloquio',
+                waardering: labels[kleur],
+                pagina: window.location.href
+            })
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.success) {
+                statusEl.textContent = 'Bedankt voor je waardering! ' + labels[kleur];
+            } else {
+                statusEl.textContent = 'Kon waardering niet versturen.';
+            }
+        })
+        .catch(() => { statusEl.textContent = 'Kon waardering niet versturen.'; });
+    }
+
+    /* ============================================================
+       PWA — installatiebanner (subtiel) + service worker registratie
+    ============================================================ */
+    let deferredInstallPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+        if (localStorage.getItem('aiutoColloquioInstallGeweigerd') === '1') return;
+        setTimeout(() => {
+            document.getElementById('install-banner').classList.add('show');
+        }, 4000);
+    });
+
+    function installeerApp() {
+        verbergInstallBanner();
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt = null;
+    }
+
+    function verbergInstallBanner() {
+        document.getElementById('install-banner').classList.remove('show');
+        localStorage.setItem('aiutoColloquioInstallGeweigerd', '1');
+    }
+
+    window.addEventListener('appinstalled', verbergInstallBanner);
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js').catch(() => {});
+        });
+    }
+</script>
 
 </body>
 </html>
